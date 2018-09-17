@@ -1,0 +1,16 @@
+<h1>Confirmation</h1>
+<%= form_with(model: @picture, url: pictures_path, local: true) do |form| %>
+  <%= form.hidden_field :title %>
+  <%= form.hidden_field :comment %>
+  <%= form.hidden_field :img_cache %>
+
+  <%= image_tag(@picture.img) %><br>
+  <p>タイトル:<%= @picture.title%></p><br>
+  <p>内容:<%= @picture.comment%></p><br>
+  <%= form.submit "投稿する" %>
+<% end %>
+
+<%= form_with(model:@picture, url:new_picture_path, local:true, method:"get") do |form| %>
+  <%= form.hidden_field :img_cache %>
+  <%= form.submit "戻る", name: "back" %>
+<% end %>

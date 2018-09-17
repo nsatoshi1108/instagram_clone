@@ -9,7 +9,20 @@ class PicturesController < ApplicationController
   end
 
   def new
-    @picture = Picture.new
+    if params[:back]
+      @picture = Picture.new(picture_params)
+      @picture.user_id = current_user.id
+    else
+      @picture = Picture.new
+      @picture.user_id = current_user.id
+    end
+
+  end
+
+  def confirm
+    @picture = Picture.new(picture_params)
+    @picture.user_id = current_user.id
+    render :new if @picture.invalid?
   end
 
   def edit
@@ -17,6 +30,7 @@ class PicturesController < ApplicationController
 
   def create
     @picture = Picture.new(picture_params)
+    @picture.user_id = current_user.id
 
     respond_to do |format|
       if @picture.save
@@ -56,6 +70,6 @@ class PicturesController < ApplicationController
     end
 
     def picture_params
-      params.require(:picture).permit(:img, :title, :comment)
+      params.require(:picture).permit(:img, :title, :comment, :img_cache)
     end
 end
