@@ -8,7 +8,46 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#blog_navi" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to "投稿写真一覧",pictures_path,class: 'navbar-brand'%>
+      </div>
+      <div class="collapse navbar-collapse" id="pictures_navi">
+        <ul class="nav navbar-nav">
+          <li><%= link_to 'PICTURE LISTS',pictures_path%></li>
+          <li><%= link_to 'NEW PICTURE',new_picture_path%></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <body>
-    <%= yield %>
+    <div class="contain clearfix">
+
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key}") %>
+      <%end%>
+
+      <% if logged_in? %>
+        <%= link_to "Profile", user_path(current_user.id) %>
+        <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+      <% else %>
+        <%= link_to "Sign up", new_user_path %>
+        <%= link_to "Login", new_session_path %>
+      <% end %>
+      <%= yield %>
+
+      <footer>
+        <p>運営会社DIVE INTO CODE株式会社</p>
+        <p>© 2015-2016 Copyright DIVE INTO CODE Corp.</p>
+      </footer>
+    </div>
   </body>
 </html>
