@@ -1,6 +1,7 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-  before_action :limit
+  before_action :limit, only: [:index, :new, :show, :edit, :update, :destroy]
+
   def index
     @pictures = Picture.all
   end
@@ -72,6 +73,9 @@ class PicturesController < ApplicationController
     end
 
     def limit
-      logged_in? unless redirect_to new_session_path
+      if logged_in? ==false
+        redirect_to new_session_path
+      end
     end
+
 end

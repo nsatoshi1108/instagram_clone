@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>投稿者</th>
       <th>Title</th>
       <th>Comment</th>
       <th colspan="3"></th>
@@ -14,6 +15,10 @@
   <tbody>
     <% @pictures.each do |picture| %>
       <tr>
+        <td>
+          <% user_info = User.find(picture.user_id)%>
+          <%= user_info.name%>
+        </td>
         <td><%= picture.title %></td>
         <td><%= picture.comment %></td>
         <td><%= link_to 'Show', picture %></td>
