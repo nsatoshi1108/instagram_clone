@@ -21,8 +21,8 @@
       </div>
       <div class="collapse navbar-collapse" id="pictures_navi">
         <ul class="nav navbar-nav">
-          <li><%= link_to 'PICTURE LISTS',pictures_path%></li>
-          <li><%= link_to 'NEW PICTURE',new_picture_path%></li>
+          <li><%= link_to_if(logged_in?,'PICTURE LISTS',pictures_path){link_to('PICTURE LISTS',new_session_path)} %></li>
+          <li><%= link_to_if(logged_in?,'NEW PICTURE',new_picture_path){link_to('NEW PICTURE',new_session_path)} %></li>
         </ul>
       </div>
     </div>
