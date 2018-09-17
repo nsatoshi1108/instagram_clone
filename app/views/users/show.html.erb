@@ -15,4 +15,13 @@
   <%= image_tag(@user.icon) %>
 </p>
 <br>
+<h2>お気に入り一覧</h2>
+
+  <% @favorite_pictures.each do |favorite|%>
+  <% picture = Picture.find(favorite.picture_id)%>
+  写真タイトル：<%= picture.title%>
+  投稿者：<% user_info = User.find(picture.user_id)%>
+         <%= user_info.name%>
+         <%= link_to 'ページへ行く',picture_path(picture.id)%><br>
+  <%end%>
 <%= link_to 'Edit', edit_user_path(@user) %>
