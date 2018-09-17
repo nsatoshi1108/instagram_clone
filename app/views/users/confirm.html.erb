@@ -1,0 +1,18 @@
+<h1>Confirmation</h1>
+<%= form_with(model: @user, url: users_path, local: true) do |form| %>
+  <%= form.hidden_field :name %>
+  <%= form.hidden_field :email %>
+  <%= form.hidden_field :password %>
+  <%= form.hidden_field :password_confirmation %>
+  <%= form.hidden_field :icon_cache %>
+
+  <%= image_tag(@user.icon) %><br>
+  <p>タイトル:<%= @user.name%></p><br>
+  <p>内容:<%= @user.email%></p><br>
+  <%= form.submit "投稿する" %>
+<% end %>
+
+<%= form_with(model:@user, url:new_user_path, local:true, method:"get") do |form| %>
+  <%= form.hidden_field :icon_cache %>
+  <%= form.submit "戻る", name: "back" %>
+<% end %>

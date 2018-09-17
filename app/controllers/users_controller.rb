@@ -25,6 +25,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def confirm
+    @user = User.new(user_params)
+    render :new if @user.invalid?
+  end
+
   def update
     respond_to do |format|
       if @user.update(user_params)
@@ -44,6 +49,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :icon)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :icon, :icon_cache)
     end
 end

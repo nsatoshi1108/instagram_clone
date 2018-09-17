@@ -12,8 +12,7 @@
 <br>
 <p>
   <strong>Icon:</strong>
-  <%= @user.icon %>
+  <%= image_tag(@user.icon) %>
 </p>
 <br>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Edit', edit_user_path(@user) %>

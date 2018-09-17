@@ -11,10 +11,8 @@ class PicturesController < ApplicationController
   def new
     if params[:back]
       @picture = Picture.new(picture_params)
-      @picture.user_id = current_user.id
     else
       @picture = Picture.new
-      @picture.user_id = current_user.id
     end
 
   end
