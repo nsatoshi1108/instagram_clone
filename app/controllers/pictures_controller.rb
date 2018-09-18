@@ -1,6 +1,7 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-  before_action :limit, only: [:index, :new, :show, :edit, :update, :destroy]
+  before_action :login_limit, only: [:index, :new, :show, :edit, :update, :destroy]
+  before_action :user_limit, only: [:edit, :update, :destroy]
 
   def index
     @pictures = Picture.all
@@ -75,9 +76,15 @@ class PicturesController < ApplicationController
       params.require(:picture).permit(:img, :title, :comment, :img_cache)
     end
 
-    def limit
+    def login_limit
       if logged_in? ==false
         redirect_to new_session_path
+      end
+    end
+
+    def user_limit
+      if @picture.user_id != current_user.id
+        redirect_to pictures_path
       end
     end
 

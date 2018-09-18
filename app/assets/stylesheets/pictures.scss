@@ -8,6 +8,7 @@ body{
 }
 
 .clearfix:after {
+  content:"";
   display: block;
   clear: both;
 }
@@ -17,7 +18,37 @@ p{
   text-align: center;
 }
 
+.user_profile{
+  width:100%;
+  height:200px;
+}
+
+.login_user_icon{
+  float: left;
+    width:25%;
+}
+
+.login_user_comment{
+  float:left;
+  width:75%;
+  height:100px;
+}
+
+.login_user_name{
+
+}
+
+.picture_field{
+  display: table;
+}
+
+.picture_field p{
+  height:50px;
+  vertical-align: middle;
+}
+
 .contain{
+  text-align: center;
   padding-bottom: 50px;
   position:relative;
   min-height: 100%;
