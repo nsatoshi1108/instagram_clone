@@ -38,6 +38,15 @@ p{
 
 }
 
+.picture_img{
+  display: inline-block;
+  height: 50px;
+}
+
+.picture_img img{
+  height: 100%;
+}
+
 .picture_field{
   display: table;
 }

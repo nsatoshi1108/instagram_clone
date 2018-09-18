@@ -21,6 +21,7 @@
 <table>
   <thead>
     <tr>
+      <th>画像</th>
       <th>投稿者</th>
       <th>Title</th>
       <th>Comment</th>
@@ -30,10 +31,15 @@
 
   <tbody>
     <% @pictures.each do |picture| %>
+      <% user_info = User.find(picture.user_id)%>
         <tr>
           <td>
+            <div class="picture_img">
+            <%= image_tag picture.img %>
+            </div>
+          </td>
+          <td>
             <div class="picture_field">
-            <% user_info = User.find(picture.user_id)%>
             <P><%= user_info.name%></P>
             </div>
           </td>
@@ -49,18 +55,18 @@
           </td>
           <td>
             <div class="picture_field">
-              <%= link_to 'Show', picture %>
+              <%= link_to 'Show', picture, class: "btn btn-default" %>
             </div>
           </td>
           <% if picture.user_id == current_user.id %>
             <td>
               <div class="picture_field">
-              <%= link_to 'Edit', edit_picture_path(picture) %>
+              <%= link_to 'Edit', edit_picture_path(picture), class: "btn btn-warning" %>
               </div>
             </td>
             <td>
               <div class="picture_field">
-              <%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
               </div>
             </td>
           <%end%>
